@@ -28,5 +28,6 @@
         <a href="/projects" class="menua"><div class="menu">Projects</div></a>
         <a href="/<?php if ($_SESSION['id']) {echo $_SESSION['id'];} else echo 1; ?>" class="menua"><div class="menu">Me</div></a>
     </div>
+    <div class="mainpart">
     <?php  if ($_SESSION['message']) MessageShow(); ?>
     <div class="content">

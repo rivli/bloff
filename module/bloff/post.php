@@ -42,8 +42,10 @@ if ($comment['mainid']=="0") {
 $author = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `id` = '".$comment['user']."'"));
 
 echo '
-<div class="comments" ><a href="/'.$comment['user'].'" class="postname" >'.$author['name'].' '.$author['lastname'].'</a><span style="font-size:10px;float:right;">  '.$comment['date'].' '.$comment['time'].'</span><br>'.$comment['text'].'<br><div  class="AnsweringButton" id="'.$comment['id'].'"  style="display:inline-block;"  value="'.$author['name'].'"  id="AnsweringButton">Ответить</div></div>
-';}
+<div class="comments" ><a href="/'.$comment['user'].'" class="postname" >'.$author['name'].' '.$author['lastname'].'</a><span style="font-size:10px;float:right;">  '.$comment['date'].' '.$comment['time'].'</span><br>'.$comment['text'];
+if ($_SESSION['status']=='login' and $comment['user']!=$_SESSION['id']) echo '<br><div  class="AnsweringButton" id="'.$comment['id'].'"  style="display:inline-block;"  value="'.$author['name'].'"  id="AnsweringButton">Ответить</div>';
+echo '</div>';
+}
 $daughterCommentsCount = mysqli_fetch_array(mysqli_query($COMMENTBD, "SELECT COUNT(*) FROM `bloff".$page."` WHERE (`mainid` = '".$comment['id']."')"));
 if ($daughterCommentsCount[0]) {
 $daughterCommentResult = mysqli_query($COMMENTBD, "SELECT * FROM `bloff".$page."` WHERE (`mainid` = '".$comment['id']."') ORDER BY id ASC, date DESC LIMIT $daughterCommentsCount[0]");
@@ -51,8 +53,10 @@ while($daughterComment = mysqli_fetch_array($daughterCommentResult)) {
 $author = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `id` = '".$daughterComment['user']."'"));
 
 echo '
-<div class="comments2" ><a href="/'.$daughterComment['user'].'" class="postname" >'.$author['name'].' '.$author['lastname'].'</a><span style="font-size:10px;float:right;"> '.$daughterComment['date']." ".$daughterComment['time']."</span><br>".$daughterComment['text'].'<br><div class="AnsweringButton" style="display:inline-block;" value="'.$author['name'].'" id="'.$daughterComment['id'].'" id="AnsweringButton">Ответить</div></div>
-';};};
+<div class="comments2" ><a href="/'.$daughterComment['user'].'" class="postname" >'.$author['name'].' '.$author['lastname'].'</a><span style="font-size:10px;float:right;"> '.$daughterComment['date']." ".$daughterComment['time']."</span><br>".$daughterComment['text'];
+if ($_SESSION['status']=='login' and $daughterComment['user']!=$_SESSION['id']) echo '<br><div  class="AnsweringButton" id="'.$daughterComment['id'].'"  style="display:inline-block;"  value="'.$author['name'].'"  id="AnsweringButton">Ответить</div>';
+echo '</div>';
+;};};
 $i--;
 };
 echo '</div>';

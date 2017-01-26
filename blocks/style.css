@@ -1,5 +1,5 @@
 body {
-  margin: auto 25%;
+  margin: auto 7%;
   padding:  0 ;
   background:  #dadada url(/resources/background.jpg) fixed;
  font-family: Helvetica;
@@ -12,10 +12,31 @@ hr {
     border:none;
 }
 
+
 .header {
   background: #ab2121;
   height: 50px;
   width: 100%;
+  margin-bottom: 10px;
+}
+
+.mainpart {
+  background: #ffffff;
+  width:69%;
+  display: inline-block;
+}
+
+.sidebar {
+  margin-left: 1%;
+  width: 29%;
+  min-height: 500px;
+  float: right;
+  display: inline-block;
+}
+
+.sb_block {
+  background: #ffffff;
+  padding:5%;
 }
 
 .date {
@@ -46,7 +67,7 @@ hr {
 
 .content {
   background: #ffffff;
- padding:3% 5%;
+  padding:3% 5%;
 }
 
 .message {
@@ -120,7 +141,7 @@ border-radius:20px;
 opacity:0.3;
 position:fixed;
 bottom:50px;
-left:100px;
+left:30px;
 display:none;
 background: url('/resources/icon_top.png') no-repeat;
 }
@@ -140,7 +161,7 @@ color:white;
 position:fixed;
 text-align: center;
 top:50px;
-right:100px;
+right:30px;
 background: #1d1916;
 }
 

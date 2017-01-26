@@ -35,7 +35,37 @@ $ident2 = array_shift($params);
  else if (file_exists("module/$module/$page.php")) { include "module/$module/$page.php" ;}
  else {header('HTTP/1.0 404 Not Found');exit(include("page/404.php"));};
 
-
+//new URL: (on developing)
+//variant 2
+/*
+if ($module == false ) {include "page/index.php";}
+  else {
+    if (intval($module)) {
+      //user
+      if ($page == false) {include "module/users/profile.php";} else {
+        if ($ident1 == false) {//here may modernization
+          if (intval($page)) {include 'module/users/uarticle.php';} else {header('HTTP/1.0 404 Not Found');exit(include("page/404.php"));}
+        } else if ($ident2 == false) {
+          if (file_exists('module/users/'.$ident1.'.php')) include 'module/users/'.$ident1.'.php';
+        }
+        }
+      } else if ($module == 'reg') {include 'module/users/registation.php';}
+        else if ($module == 'm') {
+          if ($page == false) {include 'module/users/message.php';} else {
+            if (intval($page)) include 'module/users/umessage.php';
+          }
+        }
+        else if ($page == 'query' and file_exists('module/'.$module.'/'.$page.'/'.$ident1.'.php')) {include 'module/'.$module.'/'.$page.'/'.$ident1.'.php';}
+        else if ($module) {
+          if ($page == false) {include "module/projects/index.php";} else {
+            if ($ident1 == false) {include 'module/projects/projectpage.php';} else {
+              if (file_exists('module/projects/'.$ident1)) include 'module/projects/'.$ident1;
+            }
+          }
+        }
+        else {header('HTTP/1.0 404 Not Found');exit(include("page/404.php"));};
+    };
+*/
 
 
 ?>

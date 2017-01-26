@@ -7,7 +7,7 @@ $user = mysqli_fetch_array($result);
 
 
 if ($user != 0) {
-    
+
     $title=$user['name']." ".$user['lastname']; include 'blocks/header.php';
 if ($user['acc_verification'] == 0 and $user['id'] == $_SESSION['id']) MessageSend(1,"Подтвердите ваш аккаунт по почте ".$user['email']);
 ?>
@@ -28,6 +28,11 @@ if ($user['acc_verification'] == 0 and $user['id'] == $_SESSION['id']) MessageSe
 				        </div>
 				</a>
 	<?php } else { ?>
+    <a href="/users/message/<?php echo $module; ?>" style="text-decoration:none" >
+          <div class="abutton">
+              <span class="insideabutton">Отправить сообщение</span>
+            </div>
+    </a>
 	    <a href="/<?php echo $_SESSION['id'] ?>" style="text-decoration:none">
           <div class="abutton">
               <span class="insideabutton">My Profile</span>
@@ -37,16 +42,15 @@ if ($user['acc_verification'] == 0 and $user['id'] == $_SESSION['id']) MessageSe
 
 </div>
 <br>
-
-  <img src="<?php echo $user['avatar'] ?>" width="200px"  alt="<?php echo $user['name']." ".$user['lastname'] ?> ">
-
-
-
   <br>E-mail: <?php echo $user['email'] ?>
 	<?php if ($user['birthday'] != "0000-00-00") { ?><br>Дата рождения: <?php echo $user['birthday']; }; ?>
 	<br>Дата регистрации: <?php echo $user['regdate'] ?>
 	<?php if ($user['about']) { ?><br>О себе: <?php echo $user['about']; }; ?>
 </div>
+<hr>
+  <div class="description">
+    Here you can add interesting articles.
+ </div><br>
 
 
 
@@ -55,5 +59,5 @@ $title="Пользователь не найден"; include 'blocks/header.php'
 echo "Пользователь с id = ".$module." не найден";} ?>
 
 <?php include 'blocks/content.php';
-} else include 'module/users/login.php';
+} else MessageSend(1,"Зарегестрируйтесь или авторизуйтесь ","/");
 ?>
