@@ -25,13 +25,21 @@
 
 <?php
 
-$postsNumber = mysqli_fetch_array(mysqli_query($CONNECT , "SELECT COUNT(*) FROM `bloff`"));
+$postsNumber = mysqli_fetch_array(mysqli_query($CONNECT , "SELECT COUNT(*) FROM `uarticles`"));
 $i = $postsNumber[0];
 while ($i >= 1) {
-$post = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT * FROM `bloff` WHERE `id` = '".$i."'"));
+$post = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT * FROM `uarticles` WHERE `id` = '".$i."'"));
 $author = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `id` = '".$post['author']."'"));
 if ($post['status'] == "verified") {
-echo '<a href="bloff/'.$i.'" class="postname" >'.$post['name'].'</a> / '.$post['category'];
+
+/*  if (strlen($post['name']) > 75) {
+    $postname=substr($post['name'], 0, 70)."...";
+  } else {*/
+      $postname = $post['name'];
+//  }
+
+
+echo '<a href="'.$post['author'].'/'.$i.'" class="postname" title="'.$post['name'].'" >'.$postname.'</a> / '.$post['category'];
 echo "<span class='date'>".$post['date']."</span>";
 echo '<br><span class="date" style="font-size:10px;color:#656565">'.$author['name'].' '.$author['lastname'].'</span>';
 echo "<hr style=\"height:1px;\" >";}

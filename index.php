@@ -21,7 +21,7 @@ $page = array_shift($params);
 $ident1 = array_shift($params);
 $ident2 = array_shift($params);
 
-
+/*
   if ($module == false ) {include "module/bloff/index.php";}
   else if ($page == false and intval($module) ) {include "module/users/profile.php" ;}
  else if ($page == false and file_exists("page/$module.php")) {include "page/$module.php" ;}
@@ -34,28 +34,36 @@ $ident2 = array_shift($params);
  else if ($ident1 == "verify" && file_exists("module/$module")) {include "module/$module/query/verify.php" ;}
  else if (file_exists("module/$module/$page.php")) { include "module/$module/$page.php" ;}
  else {header('HTTP/1.0 404 Not Found');exit(include("page/404.php"));};
-
+*/
 //new URL: (on developing)
 //variant 2
-/*
+
 if ($module == false ) {include "page/index.php";}
   else {
     if (intval($module)) {
       //user
       if ($page == false) {include "module/users/profile.php";} else {
-        if ($ident1 == false) {//here may modernization
-          if (intval($page)) {include 'module/users/uarticle.php';} else {header('HTTP/1.0 404 Not Found');exit(include("page/404.php"));}
+        if ($ident1 == false) {//here may modernization.add edit and delete
+          if (intval($page)) {include 'module/users/article/uarticle.php';} else {
+            if ($page == 'add') include 'module/users/article/'.$page.'.php';
+            //else  header('HTTP/1.0 404 Not Found');exit(include("page/404.php"));
+          }
         } else if ($ident2 == false) {
-          if (file_exists('module/users/'.$ident1.'.php')) include 'module/users/'.$ident1.'.php';
+          if ($ident1 == 'delete') include 'module/users/article/query/'.$ident1.'.php';
         }
         }
-      } else if ($module == 'reg') {include 'module/users/registation.php';}
+      } else if ($module == 'reg') {include 'module/users/registration.php';}
         else if ($module == 'm') {
           if ($page == false) {include 'module/users/message.php';} else {
             if (intval($page)) include 'module/users/umessage.php';
           }
         }
+        else if ($module == 'p') {
+          if ($page == false) {include 'page/index.php';} else { include 'page/'.$page.'.php';
+          }
+        }
         else if ($page == 'query' and file_exists('module/'.$module.'/'.$page.'/'.$ident1.'.php')) {include 'module/'.$module.'/'.$page.'/'.$ident1.'.php';}
+        else if ($ident1 == 'query' and file_exists('module/'.$module.'/'.$page.'/'.$ident1.'/'.$ident2.'.php')) {include 'module/'.$module.'/'.$page.'/'.$ident1.'/'.$ident2.'.php';}
         else if ($module) {
           if ($page == false) {include "module/projects/index.php";} else {
             if ($ident1 == false) {include 'module/projects/projectpage.php';} else {
@@ -65,7 +73,7 @@ if ($module == false ) {include "page/index.php";}
         }
         else {header('HTTP/1.0 404 Not Found');exit(include("page/404.php"));};
     };
-*/
+
 
 
 ?>

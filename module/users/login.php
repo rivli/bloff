@@ -7,7 +7,7 @@
 
 
 
-  <a href="/users/registration" style="position:relative;left:10px;bottom:2px;">
+  <a href="/reg" style="position:relative;left:10px;bottom:2px;">
       <div class="abutton">
           <span class="insideabutton">Registration</span>
         </div>

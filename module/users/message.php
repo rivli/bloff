@@ -12,7 +12,7 @@ if ($umessages['companions']) {
   $messages = mysqli_fetch_array(mysqli_query($MESSAGEBD, "SELECT * FROM `".$tableName."`"));
   $companion = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `id` = '".$companions[$i]."'"));
   $unreadMessagesCount = mysqli_fetch_array(mysqli_query($MESSAGEBD, "SELECT COUNT(*) FROM `".$tableName."` WHERE `recipient` = '".$_SESSION['id']."' and `status` = '0'"));
-  echo '<a href="/users/message/'.$companions[$i].'" class="postname" >'.$companion['name'].' '.$companion['lastname'].'</a><span style="float:right" title="Непорочитанных">'.$unreadMessagesCount[0].'</span><hr>';
+  echo '<a href="/m/'.$companions[$i].'" class="postname" >'.$companion['name'].' '.$companion['lastname'].'</a><span style="float:right" title="Непорочитанных">'.$unreadMessagesCount[0].'</span><hr>';
   $i--;
   };
 }

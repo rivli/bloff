@@ -8,7 +8,7 @@ mysqli_query($MESSAGEBD , "INSERT INTO `".$_POST['tablename']."`  VALUES ('','0'
 
 
 
-MessageSend(2, 'Сообщение отправлено', '/users/message/'.$_POST['recipient']);
+MessageSend(2, 'Сообщение отправлено', '/m/'.$_POST['recipient']);
 };};
 
  ?>

@@ -9,15 +9,15 @@
   </head>
   <body>
     <?php
-    $inspection = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT COUNT(*) FROM `bloff` WHERE `status` = 'inspection'"));
+    $inspection = mysqli_fetch_array(mysqli_query($CONNECT, "SELECT COUNT(*) FROM `uarticles` WHERE `status` = 'inspection'"));
      if ($_SESSION['position']=='admin') { ?>
-       <a href="/bloff/inspectionposts">
+       <a href="/p/inspectionposts">
       <div class="inspection">
       <?php echo $inspection[0]; ?>
       </div>
     </a>
     <?php }; if ($_SESSION['status']=='login') {  ?>
-    <a href="/users/message">
+    <a href="/m">
    <div class="inspection" style="top:100px;" title="Непрочитанных сообщений">
    <?php echo $unreadMessagesSumm; ?>
    </div>
